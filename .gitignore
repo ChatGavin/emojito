@@ -1,0 +1,15 @@
+# IDE
+.DS_Store
+.vscode
+.idea
+.turbo
+
+# Dependencies
+node_modules
+
+# Build
+apps/web/dist
+
+
+
+
