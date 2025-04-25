@@ -17,7 +17,10 @@
     "emojito"
   ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "dev": "turbo run dev --filter=@emojito/web...",
+    "web:dev": "turbo run dev --filter=@emojito/web",
+    "web:build": "turbo run build --filter=@emojito/web"
   },
   "devDependencies": {
     "turbo": "^2.4.4"
