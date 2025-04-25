@@ -1,0 +1,28 @@
+{
+  "name": "emojito",
+  "version": "1.0.0",
+  "description": "一款轻量级的 emoji 工具包",
+  "author": "Gavin Lin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChatGavin/emojito.git"
+  },
+  "homepage": "https://emojito.gavin.chat",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.5.2",
+  "keywords": [
+    "emoji",
+    "emojito"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
