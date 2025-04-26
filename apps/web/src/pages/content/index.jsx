@@ -1,6 +1,20 @@
 import React from "react";
 import emojiCategories from "@/data/emoji-categories.json";
 
+const Search = () => {
+  return (
+    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 w-full max-w-xl px-4">
+      <div className="bg-white/40 backdrop-blur-md rounded-2xl shadow-lg p-3 transition-all duration-300 hover:bg-white/80 group">
+        <input
+          type="text"
+          placeholder="搜索表情..."
+          className="w-full px-6 py-3 text-lg rounded-xl border border-gray-200/30 focus:outline-none focus:ring-2 focus:ring-blue-500/50 bg-white/30 transition-all duration-300 placeholder:text-gray-500/50 focus:bg-white/50 group-hover:bg-white/50"
+        />
+      </div>
+    </div>
+  );
+};
+
 const Footer = () => {
   // 获取 emoji 总数量
   const total = emojiCategories.reduce(
@@ -53,6 +67,7 @@ export const Content = () => {
         ))}
       </div>
       <Footer />
+      <Search />
     </div>
   );
 };

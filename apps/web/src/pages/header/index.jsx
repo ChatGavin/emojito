@@ -1,7 +1,6 @@
 import mojitoIcon from "@/assets/icons/mojito.svg";
 import githubIcon from "@/assets/icons/github.svg";
 import linkIcon from "@/assets/icons/link.svg";
-import { Input } from "@/components/ui/input";
 import {
   HoverCard,
   HoverCardContent,
@@ -11,17 +10,12 @@ import {
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="w-full px-4 flex h-14 items-center">
+      <div className="w-full px-4 flex h-14 items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
             <img src={mojitoIcon} alt="Mojito" className="h-7 w-7" />
             <span className="font-bold text-xl">Emojito</span>
           </a>
-        </div>
-        <div className="flex-1 flex justify-center">
-          <div className="w-full max-w-sm">
-            <Input type="search" placeholder="搜索表情..." className="h-8" />
-          </div>
         </div>
         <div className="flex items-center space-x-4">
           <a
