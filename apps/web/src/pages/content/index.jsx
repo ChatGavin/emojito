@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import emojiCategories from "@/data/emoji-categories.json";
 import { useSearch } from "./useSearch";
+import { useToast } from "@/hooks/use-toast";
 
 const Search = ({ onSearch }) => {
   return (
@@ -38,6 +39,38 @@ const Footer = () => {
 export const Content = () => {
   const { searchQuery, setSearchQuery, searchResults } =
     useSearch(emojiCategories);
+  const { toast } = useToast();
+
+  // 添加全局右键事件阻止
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
+  const handleCopy = (emoji) => {
+    navigator.clipboard.writeText(emoji);
+    toast({
+      title: "复制成功",
+      description: "表情已复制到剪贴板",
+    });
+  };
+
+  const handleContextMenu = (e, emoji) => {
+    e.preventDefault();
+    const code = emoji.codePointAt(0).toString(16);
+    const codeText = `U+${code.toUpperCase()}`;
+    navigator.clipboard.writeText(codeText);
+    toast({
+      title: "复制成功",
+      description: `表情编码 ${codeText} 已复制到剪贴板`,
+    });
+  };
 
   // 渲染搜索结果或所有表情
   const renderEmojis = () => {
@@ -50,7 +83,9 @@ export const Content = () => {
               <div
                 key={emoji.id}
                 className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
-                title={`${emoji.name} - ${emoji.description}`}
+                title={`${emoji.name} - ${emoji.description}\n左键复制表情，右键查看编码`}
+                onClick={() => handleCopy(emoji.emoji)}
+                onContextMenu={(e) => handleContextMenu(e, emoji.emoji)}
               >
                 {emoji.emoji}
               </div>
@@ -78,7 +113,9 @@ export const Content = () => {
                 <div
                   key={emoji.id}
                   className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
-                  title={emoji.description}
+                  title={`${emoji.description}\n左键复制表情，右键查看编码`}
+                  onClick={() => handleCopy(emoji.emoji)}
+                  onContextMenu={(e) => handleContextMenu(e, emoji.emoji)}
                 >
                   {emoji.emoji}
                 </div>
