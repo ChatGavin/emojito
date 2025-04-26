@@ -1,14 +1,16 @@
 import React from "react";
 import emojiCategories from "@/data/emoji-categories.json";
+import { useSearch } from "./useSearch";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   return (
-    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 w-full max-w-xl px-4">
-      <div className="bg-white/40 backdrop-blur-md rounded-2xl shadow-lg p-3 transition-all duration-300 hover:bg-white/80 group">
+    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl px-4 z-50">
+      <div className="h-14 flex items-center">
         <input
-          type="text"
+          type="search"
           placeholder="搜索表情..."
-          className="w-full px-6 py-3 text-lg rounded-xl border border-gray-200/30 focus:outline-none focus:ring-2 focus:ring-blue-500/50 bg-white/30 transition-all duration-300 placeholder:text-gray-500/50 focus:bg-white/50 group-hover:bg-white/50"
+          onChange={(e) => onSearch(e.target.value)}
+          className="w-full h-8 px-4 text-sm border rounded"
         />
       </div>
     </div>
@@ -34,40 +36,67 @@ const Footer = () => {
 };
 
 export const Content = () => {
-  return (
-    <div className="flex-1 h-full w-full overflow-y-auto pt-6 pr-6 pl-6 pb-6">
-      <div className="space-y-8 w-full">
-        {emojiCategories.map((category) => (
-          <div
-            key={category.id}
-            id={category.id}
-            className="space-y-4 scroll-mt-20"
-          >
-            {category.subgroups.map((subgroup) => (
+  const { searchQuery, setSearchQuery, searchResults } =
+    useSearch(emojiCategories);
+
+  // 渲染搜索结果或所有表情
+  const renderEmojis = () => {
+    if (searchResults) {
+      return (
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold">搜索结果</h2>
+          <div className="flex flex-wrap gap-2">
+            {searchResults.map((emoji) => (
               <div
-                key={subgroup.id}
-                id={subgroup.id}
-                className="space-y-2 scroll-mt-20"
+                key={emoji.id}
+                className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
+                title={`${emoji.name} - ${emoji.description}`}
               >
-                <h2 className="text-xl font-semibold">{subgroup.name}</h2>
-                <div className="flex flex-wrap gap-2">
-                  {subgroup.emojis.map((emoji) => (
-                    <div
-                      key={emoji.id}
-                      className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
-                      title={emoji.description}
-                    >
-                      {emoji.emoji}
-                    </div>
-                  ))}
-                </div>
+                {emoji.emoji}
               </div>
             ))}
           </div>
+        </div>
+      );
+    }
+
+    return emojiCategories.map((category) => (
+      <div
+        key={category.id}
+        id={category.id}
+        className="space-y-4 scroll-mt-20"
+      >
+        {category.subgroups.map((subgroup) => (
+          <div
+            key={subgroup.id}
+            id={subgroup.id}
+            className="space-y-2 scroll-mt-20"
+          >
+            <h2 className="text-xl font-semibold">{subgroup.name}</h2>
+            <div className="flex flex-wrap gap-2">
+              {subgroup.emojis.map((emoji) => (
+                <div
+                  key={emoji.id}
+                  className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
+                  title={emoji.description}
+                >
+                  {emoji.emoji}
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
-      <Footer />
-      <Search />
+    ));
+  };
+
+  return (
+    <div className="flex-1 w-full overflow-y-auto">
+      <div className="pt-6 pb-6 px-6">
+        <div className="space-y-8 w-full">{renderEmojis()}</div>
+        <Footer />
+      </div>
+      <Search onSearch={setSearchQuery} />
     </div>
   );
 };

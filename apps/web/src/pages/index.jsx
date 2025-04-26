@@ -6,11 +6,11 @@ export function HomePage() {
   return (
     <div className="h-screen flex flex-col">
       <Header />
-      <div className="flex-1 flex">
-        <div className="w-64 h-[calc(100vh-3.5rem)] flex-shrink-0">
+      <div className="flex-1 flex overflow-hidden">
+        <div className="w-64 flex-shrink-0 overflow-y-auto">
           <Sider />
         </div>
-        <div className="flex-1 h-[calc(100vh-3.5rem)]">
+        <div className="flex-1 overflow-y-auto">
           <main className="h-full">
             <Content />
           </main>
