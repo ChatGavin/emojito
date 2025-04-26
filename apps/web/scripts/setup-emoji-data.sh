@@ -14,4 +14,10 @@ curl -o src/data/emoji-test.txt https://unicode.org/Public/emoji/latest/emoji-te
 echo "Parsing emoji data..."
 node scripts/parse-emoji-test.js
 
-echo "Done! Emoji data has been processed and saved to src/data/emojis.json" 
+# 生成分类数据
+echo "Generating emoji categories..."
+node scripts/generate-emoji-categories.js
+
+echo "Done! Emoji data has been processed and saved to:"
+echo "- src/data/emojis.json (raw data)"
+echo "- src/data/emoji-categories.json (categorized data)" 
