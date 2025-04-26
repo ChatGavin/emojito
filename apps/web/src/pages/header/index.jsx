@@ -20,7 +20,7 @@ export function Header() {
         </div>
         <div className="flex-1 flex justify-center">
           <div className="w-full max-w-sm">
-            <Input type="search" placeholder="搜索..." className="h-8" />
+            <Input type="search" placeholder="搜索表情..." className="h-8" />
           </div>
         </div>
         <div className="flex items-center space-x-4">

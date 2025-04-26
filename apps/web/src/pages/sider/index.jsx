@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 // 导入 emoji 分类数据
 import emojiCategories from "@/data/emoji-categories.json";
@@ -14,8 +15,16 @@ export const Sider = () => {
     return map;
   });
 
-  // 当前激活的 subgroup id（你可以根据实际路由或状态传递）
+  // 当前激活的 subgroup id
   const [activeSubgroup, setActiveSubgroup] = useState(null);
+
+  // 搜索相关状态
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // 处理搜索
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   // 切换组的折叠状态
   const toggleGroup = (groupId) => {
@@ -37,11 +46,38 @@ export const Sider = () => {
     }
   };
 
+  // 过滤子分类
+  const filteredCategories = emojiCategories
+    .map((group) => ({
+      ...group,
+      filteredSubgroups: searchQuery
+        ? group.subgroups.filter((subgroup) =>
+            subgroup.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        : group.subgroups,
+    }))
+    .filter((group) => group.filteredSubgroups.length > 0);
+
   return (
     <div className="h-full bg-white border-r">
       <div className="h-full overflow-y-auto">
+        {/* 搜索框 */}
+        <div className="p-2 sticky top-0 bg-white border-b">
+          <div className="relative">
+            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="搜索子分类..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pl-8"
+            />
+          </div>
+        </div>
+
+        {/* 分类列表 */}
         <div className="flex flex-col space-y-0 p-2">
-          {emojiCategories.map((group) => (
+          {filteredCategories.map((group) => (
             <div key={group.id} className="space-y-1">
               <div
                 className="flex items-center justify-between cursor-pointer px-2 py-1 text-[13px] font-medium rounded-md text-gray-900 hover:bg-gray-100 transition-colors"
@@ -65,7 +101,7 @@ export const Sider = () => {
                 }`}
               >
                 <div className="space-y-0">
-                  {group.subgroups.map((subgroup) => (
+                  {group.filteredSubgroups.map((subgroup) => (
                     <div key={subgroup.id}>
                       <button
                         onClick={() => {
@@ -92,6 +128,11 @@ export const Sider = () => {
               </div>
             </div>
           ))}
+          {searchQuery && filteredCategories.length === 0 && (
+            <div className="text-center text-sm text-gray-500 py-2">
+              未找到匹配的子分类
+            </div>
+          )}
         </div>
       </div>
     </div>
