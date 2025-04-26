@@ -1,5 +1,4 @@
 import { Header } from "./header/index";
-import "./index.module.css";
 
 export function HomePage() {
   return (
