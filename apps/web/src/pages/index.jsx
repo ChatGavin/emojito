@@ -7,11 +7,11 @@ export function HomePage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Header />
-      <SidebarProvider className="flex-1">
+      <SidebarProvider className="flex-1 h-full">
         <div className="flex h-full">
           <Sider />
-          <div className="flex-1">
-            <main className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex-1 h-full">
+            <main className="h-full">
               <Content />
             </main>
           </div>
