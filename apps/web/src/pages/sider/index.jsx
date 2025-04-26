@@ -36,6 +36,25 @@ export const Sider = () => {
     });
   };
 
+  // 滚动到指定元素
+  const scrollToElement = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      // 使用平滑滚动，并添加偏移量
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      // 添加一个小的延迟，确保滚动完成后再调整位置
+      setTimeout(() => {
+        window.scrollBy({
+          top: -80, // 增加偏移量，确保内容完全不被 header 遮挡
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  };
+
   return (
     <Sidebar variant="inset" collapsible="none" className="h-full bg-white">
       <SidebarContent className="h-full overflow-y-auto pb-24">
@@ -70,12 +89,7 @@ export const Sider = () => {
                         <button
                           onClick={() => {
                             setActiveSubgroup(subgroup.id);
-                            const element = document.getElementById(
-                              subgroup.id
-                            );
-                            if (element) {
-                              element.scrollIntoView({ behavior: "smooth" });
-                            }
+                            scrollToElement(subgroup.id);
                           }}
                           className={`flex items-center w-full px-2 py-1 text-[13px] rounded-md transition-colors hover:bg-gray-100 ${
                             activeSubgroup === subgroup.id ? "bg-gray-100" : ""
