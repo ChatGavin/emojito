@@ -66,7 +66,7 @@ export const Sider = () => {
           <div className="relative">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
-              type="text"
+              type="search"
               placeholder="搜索子分类..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
