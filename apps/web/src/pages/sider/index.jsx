@@ -38,7 +38,7 @@ export const Sider = () => {
 
   return (
     <Sidebar variant="inset" collapsible="none" className="h-full bg-white">
-      <SidebarContent className="h-full overflow-y-auto pb-4">
+      <SidebarContent className="h-full overflow-y-auto pb-24">
         <div className="flex flex-col space-y-0">
           {emojiCategories.map((group) => (
             <SidebarGroup key={group.id}>
@@ -60,7 +60,7 @@ export const Sider = () => {
               </SidebarGroupLabel>
               <SidebarGroupContent
                 className={`overflow-hidden transition-all duration-200 ${
-                  expandedGroups.get(group.id) ? "max-h-[1000px]" : "max-h-0"
+                  expandedGroups.get(group.id) ? "max-h-none" : "max-h-0"
                 }`}
               >
                 <SidebarMenu className="space-y-0">
