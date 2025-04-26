@@ -44,7 +44,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Unicode Emoji
+                  Emoji 官网
                 </a>
                 <a
                   href="https://unicode.org/Public/emoji/latest/emoji-test.txt"
@@ -52,7 +52,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Emoji Test
+                  Emoji 测试文件
                 </a>
                 <a
                   href="https://github.com/twitter/twemoji"
@@ -60,7 +60,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Twemoji
+                  Twitter 表情符号图片
                 </a>
               </div>
             </HoverCardContent>
