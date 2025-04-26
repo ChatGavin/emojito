@@ -56,7 +56,7 @@ export const Content = () => {
   const handleCopy = (emoji) => {
     navigator.clipboard.writeText(emoji);
     toast({
-      title: "复制成功",
+      title: "左键复制成功",
       description: "表情已复制到剪贴板",
     });
   };
@@ -67,7 +67,7 @@ export const Content = () => {
     const codeText = `U+${code.toUpperCase()}`;
     navigator.clipboard.writeText(codeText);
     toast({
-      title: "复制成功",
+      title: "右键复制成功",
       description: `表情编码 ${codeText} 已复制到剪贴板`,
     });
   };
@@ -83,7 +83,7 @@ export const Content = () => {
               <div
                 key={emoji.id}
                 className="flex items-center justify-center w-12 h-12 text-2xl hover:bg-gray-100 rounded-lg cursor-pointer"
-                title={`${emoji.name} - ${emoji.description}\n左键复制表情，右键查看编码`}
+                title={`${emoji.description}\n左键复制表情，右键复制编码`}
                 onClick={() => handleCopy(emoji.emoji)}
                 onContextMenu={(e) => handleContextMenu(e, emoji.emoji)}
               >

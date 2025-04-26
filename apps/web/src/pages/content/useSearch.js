@@ -39,7 +39,7 @@ export const useSearch = (emojiCategories) => {
       { name: "categoryName", weight: 0.5 },
       { name: "subgroupName", weight: 0.5 },
     ],
-    threshold: 0.4,
+    threshold: 0.3,
     includeScore: true,
     useExtendedSearch: true,
     ignoreLocation: true,
