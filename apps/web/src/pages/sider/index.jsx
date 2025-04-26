@@ -1,15 +1,5 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
 
 // 导入 emoji 分类数据
 import emojiCategories from "@/data/emoji-categories.json";
@@ -40,28 +30,20 @@ export const Sider = () => {
   const scrollToElement = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
-      // 使用平滑滚动，并添加偏移量
       element.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-      // 添加一个小的延迟，确保滚动完成后再调整位置
-      setTimeout(() => {
-        window.scrollBy({
-          top: -80, // 增加偏移量，确保内容完全不被 header 遮挡
-          behavior: "smooth",
-        });
-      }, 100);
     }
   };
 
   return (
-    <Sidebar variant="inset" collapsible="none" className="h-full bg-white">
-      <SidebarContent className="h-full overflow-y-auto pb-24">
-        <div className="flex flex-col space-y-0">
+    <div className="h-full bg-white border-r">
+      <div className="h-full overflow-y-auto">
+        <div className="flex flex-col space-y-0 p-2">
           {emojiCategories.map((group) => (
-            <SidebarGroup key={group.id}>
-              <SidebarGroupLabel
+            <div key={group.id} className="space-y-1">
+              <div
                 className="flex items-center justify-between cursor-pointer px-2 py-1 text-[13px] font-medium rounded-md text-gray-900 hover:bg-gray-100 transition-colors"
                 onClick={() => toggleGroup(group.id)}
               >
@@ -76,44 +58,42 @@ export const Sider = () => {
                     }`}
                   />
                 </div>
-              </SidebarGroupLabel>
-              <SidebarGroupContent
+              </div>
+              <div
                 className={`overflow-hidden transition-all duration-200 ${
                   expandedGroups.get(group.id) ? "max-h-none" : "max-h-0"
                 }`}
               >
-                <SidebarMenu className="space-y-0">
+                <div className="space-y-0">
                   {group.subgroups.map((subgroup) => (
-                    <SidebarMenuItem key={subgroup.id}>
-                      <SidebarMenuButton asChild>
-                        <button
-                          onClick={() => {
-                            setActiveSubgroup(subgroup.id);
-                            scrollToElement(subgroup.id);
-                          }}
-                          className={`flex items-center w-full px-2 py-1 text-[13px] rounded-md transition-colors hover:bg-gray-100 ${
-                            activeSubgroup === subgroup.id ? "bg-gray-100" : ""
-                          }`}
-                        >
-                          <span className="flex items-center space-x-2">
-                            <span className="text-base">
-                              {subgroup.emojis[0]?.emoji}
-                            </span>
-                            <span className="truncate">{subgroup.name}</span>
+                    <div key={subgroup.id}>
+                      <button
+                        onClick={() => {
+                          setActiveSubgroup(subgroup.id);
+                          scrollToElement(subgroup.id);
+                        }}
+                        className={`flex items-center w-full px-2 py-1 text-[13px] rounded-md transition-colors hover:bg-gray-100 ${
+                          activeSubgroup === subgroup.id ? "bg-gray-100" : ""
+                        }`}
+                      >
+                        <span className="flex items-center space-x-2">
+                          <span className="text-base">
+                            {subgroup.emojis[0]?.emoji}
                           </span>
-                          <span className="text-xs text-muted-foreground ml-auto">
-                            {subgroup.count}
-                          </span>
-                        </button>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
+                          <span className="truncate">{subgroup.name}</span>
+                        </span>
+                        <span className="text-xs text-muted-foreground ml-auto">
+                          {subgroup.count}
+                        </span>
+                      </button>
+                    </div>
                   ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      </SidebarContent>
-    </Sidebar>
+      </div>
+    </div>
   );
 };
