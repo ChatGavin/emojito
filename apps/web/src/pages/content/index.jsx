@@ -1,9 +1,28 @@
 import React from "react";
-import emojiCategories from "../../data/emoji-categories.json";
+import emojiCategories from "@/data/emoji-categories.json";
+
+const Footer = () => {
+  // 获取 emoji 总数量
+  const total = emojiCategories.reduce(
+    (sum, group) => sum + (group.count || 0),
+    0
+  );
+  // 更新时间（可根据实际情况替换为动态时间）
+  const updateTime = "2025-05";
+  return (
+    <div className="mt-6 mb-6">
+      <hr className="mb-4 border-gray-200" />
+      <div className="text-center pb-2">© Powered by Gavin Lin</div>
+      <div className="text-center text-xs text-gray-500">
+        更新时间：{updateTime} ｜ Emoji 总数量：{total}
+      </div>
+    </div>
+  );
+};
 
 export const Content = () => {
   return (
-    <div className="flex-1 h-full w-full overflow-y-auto pt-6 pr-6 pl-6 pb-24">
+    <div className="flex-1 h-full w-full overflow-y-auto pt-6 pr-6 pl-6 pb-12">
       <div className="space-y-8 w-full">
         {emojiCategories.map((category) => (
           <div key={category.id} className="space-y-4">
@@ -26,6 +45,7 @@ export const Content = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
