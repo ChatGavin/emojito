@@ -1,98 +1,5 @@
 [
   {
-    "id": "component",
-    "name": "Component",
-    "count": 9,
-    "subgroups": [
-      {
-        "id": "hair-style",
-        "name": "hair-style",
-        "count": 4,
-        "emojis": [
-          {
-            "id": 3482,
-            "emoji": "🦰",
-            "description": "🦰  red hair",
-            "version": "E11.0",
-            "codepoints": "1F9B0",
-            "status": "component           # 🦰 E11.0 red hair"
-          },
-          {
-            "id": 3483,
-            "emoji": "🦱",
-            "description": "🦱  curly hair",
-            "version": "E11.0",
-            "codepoints": "1F9B1",
-            "status": "component           # 🦱 E11.0 curly hair"
-          },
-          {
-            "id": 3484,
-            "emoji": "🦳",
-            "description": "🦳  white hair",
-            "version": "E11.0",
-            "codepoints": "1F9B3",
-            "status": "component           # 🦳 E11.0 white hair"
-          },
-          {
-            "id": 3485,
-            "emoji": "🦲",
-            "description": "🦲  bald",
-            "version": "E11.0",
-            "codepoints": "1F9B2",
-            "status": "component           # 🦲 E11.0 bald"
-          }
-        ]
-      },
-      {
-        "id": "skin-tone",
-        "name": "skin-tone",
-        "count": 5,
-        "emojis": [
-          {
-            "id": 3477,
-            "emoji": "🏻",
-            "description": "🏻  light skin tone",
-            "version": "E1.0",
-            "codepoints": "1F3FB",
-            "status": "component           # 🏻 E1.0 light skin tone"
-          },
-          {
-            "id": 3478,
-            "emoji": "🏼",
-            "description": "🏼  medium-light skin tone",
-            "version": "E1.0",
-            "codepoints": "1F3FC",
-            "status": "component           # 🏼 E1.0 medium-light skin tone"
-          },
-          {
-            "id": 3479,
-            "emoji": "🏽",
-            "description": "🏽  medium skin tone",
-            "version": "E1.0",
-            "codepoints": "1F3FD",
-            "status": "component           # 🏽 E1.0 medium skin tone"
-          },
-          {
-            "id": 3480,
-            "emoji": "🏾",
-            "description": "🏾  medium-dark skin tone",
-            "version": "E1.0",
-            "codepoints": "1F3FE",
-            "status": "component           # 🏾 E1.0 medium-dark skin tone"
-          },
-          {
-            "id": 3481,
-            "emoji": "🏿",
-            "description": "🏿  dark skin tone",
-            "version": "E1.0",
-            "codepoints": "1F3FF",
-            "status": "component           # 🏿 E1.0 dark skin tone"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "smileys-&-emotion",
     "name": "Smileys & Emotion",
     "count": 185,
@@ -28133,6 +28040,99 @@
             "version": "E16.0",
             "codepoints": "1FAC6",
             "status": "fully-qualified     # 🫆 E16.0 fingerprint"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "component",
+    "name": "Component",
+    "count": 9,
+    "subgroups": [
+      {
+        "id": "hair-style",
+        "name": "hair-style",
+        "count": 4,
+        "emojis": [
+          {
+            "id": 3482,
+            "emoji": "🦰",
+            "description": "🦰  red hair",
+            "version": "E11.0",
+            "codepoints": "1F9B0",
+            "status": "component           # 🦰 E11.0 red hair"
+          },
+          {
+            "id": 3483,
+            "emoji": "🦱",
+            "description": "🦱  curly hair",
+            "version": "E11.0",
+            "codepoints": "1F9B1",
+            "status": "component           # 🦱 E11.0 curly hair"
+          },
+          {
+            "id": 3484,
+            "emoji": "🦳",
+            "description": "🦳  white hair",
+            "version": "E11.0",
+            "codepoints": "1F9B3",
+            "status": "component           # 🦳 E11.0 white hair"
+          },
+          {
+            "id": 3485,
+            "emoji": "🦲",
+            "description": "🦲  bald",
+            "version": "E11.0",
+            "codepoints": "1F9B2",
+            "status": "component           # 🦲 E11.0 bald"
+          }
+        ]
+      },
+      {
+        "id": "skin-tone",
+        "name": "skin-tone",
+        "count": 5,
+        "emojis": [
+          {
+            "id": 3477,
+            "emoji": "🏻",
+            "description": "🏻  light skin tone",
+            "version": "E1.0",
+            "codepoints": "1F3FB",
+            "status": "component           # 🏻 E1.0 light skin tone"
+          },
+          {
+            "id": 3478,
+            "emoji": "🏼",
+            "description": "🏼  medium-light skin tone",
+            "version": "E1.0",
+            "codepoints": "1F3FC",
+            "status": "component           # 🏼 E1.0 medium-light skin tone"
+          },
+          {
+            "id": 3479,
+            "emoji": "🏽",
+            "description": "🏽  medium skin tone",
+            "version": "E1.0",
+            "codepoints": "1F3FD",
+            "status": "component           # 🏽 E1.0 medium skin tone"
+          },
+          {
+            "id": 3480,
+            "emoji": "🏾",
+            "description": "🏾  medium-dark skin tone",
+            "version": "E1.0",
+            "codepoints": "1F3FE",
+            "status": "component           # 🏾 E1.0 medium-dark skin tone"
+          },
+          {
+            "id": 3481,
+            "emoji": "🏿",
+            "description": "🏿  dark skin tone",
+            "version": "E1.0",
+            "codepoints": "1F3FF",
+            "status": "component           # 🏿 E1.0 dark skin tone"
           }
         ]
       }
