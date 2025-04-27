@@ -26,39 +26,41 @@ export function Header() {
           >
             <img src={githubIcon} alt="GitHub" className="h-6 w-6" />
           </a>
-          <HoverCard>
-            <HoverCardTrigger className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-              <img src={linkIcon} alt="Links" className="h-6 w-6" />
-            </HoverCardTrigger>
-            <HoverCardContent className="w-48">
-              <div className="flex flex-col space-y-2">
-                <a
-                  href="https://home.unicode.org/emoji/about-emoji/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Emoji 官网
-                </a>
-                <a
-                  href="https://unicode.org/Public/emoji/latest/emoji-test.txt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Emoji 测试文件
-                </a>
-                <a
-                  href="https://github.com/twitter/twemoji"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Twitter 表情符号图片
-                </a>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
+          <div style={{ display: "none" }}>
+            <HoverCard>
+              <HoverCardTrigger className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+                <img src={linkIcon} alt="Links" className="h-6 w-6" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-48">
+                <div className="flex flex-col space-y-2">
+                  <a
+                    href="https://home.unicode.org/emoji/about-emoji/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Emoji 官网
+                  </a>
+                  <a
+                    href="https://unicode.org/Public/emoji/latest/emoji-test.txt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Emoji 测试文件
+                  </a>
+                  <a
+                    href="https://github.com/twitter/twemoji"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Twitter 表情符号图片
+                  </a>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
         </div>
       </div>
     </header>
