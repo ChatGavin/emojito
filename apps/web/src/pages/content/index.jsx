@@ -77,7 +77,12 @@ export const Content = () => {
     if (searchResults) {
       return (
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold">搜索结果</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">搜索结果</h2>
+            <span className="text-sm text-gray-500">
+              共 {searchResults.length} 个表情
+            </span>
+          </div>
           <div className="flex flex-wrap gap-2">
             {searchResults.map((emoji) => (
               <div
