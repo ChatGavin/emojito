@@ -1,7 +1,7 @@
 {
   "name": "@emojito/web",
-  "version": "1.0.4",
-  "description": "一款轻量级的 emoji 工具包",
+  "version": "1.0.3",
+  "description": "React Emoji 组件库，支持 Emoji 和 Unicode 码点，提供在线预览和搜索功能。",
   "author": "Gavin Lin",
   "license": "MIT",
   "repository": {
