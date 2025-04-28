@@ -25,7 +25,7 @@
     "version": "changeset version && rm -rf .changeset/*.md",
     "release": "turbo run build --filter=@emojito/core --filter=@emojito/web && changeset publish --filter=@emojito/core",
     "bump": "pnpm changeset && pnpm version",
-    "bump:auto": "changeset add --empty && pnpm version"
+    "bump:auto": "changeset add --empty --snapshot && pnpm version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",

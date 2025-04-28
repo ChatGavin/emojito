@@ -11,5 +11,6 @@
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
-  "cleanup": true
+  "cleanup": true,
+  "autoCommit": true
 }
