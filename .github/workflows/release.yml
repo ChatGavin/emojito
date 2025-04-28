@@ -75,6 +75,7 @@ jobs:
       - name: Publish to npm
         run: |
           cd packages/core
+          npm pkg set name="emojito"
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
