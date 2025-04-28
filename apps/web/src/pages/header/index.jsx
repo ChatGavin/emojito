@@ -1,11 +1,20 @@
 import mojitoIcon from "@/assets/icons/mojito.svg";
 import githubIcon from "@/assets/icons/github.svg";
 import linkIcon from "@/assets/icons/link.svg";
+import npmIcon from "@/assets/icons/npm.svg";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 export function Header() {
   return (
@@ -18,6 +27,32 @@ export function Header() {
           </a>
         </div>
         <div className="flex items-center space-x-4">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="default"
+                size="sm"
+                className="h-7 px-2 bg-black text-white hover:bg-black/90 text-xs"
+              >
+                预览
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+                <X className="h-4 w-4" />
+                <span className="sr-only">关闭</span>
+              </DialogClose>
+              <div className="p-4">{/* 对话框内容 */}</div>
+            </DialogContent>
+          </Dialog>
+          <a
+            href="https://www.npmjs.com/package/emojito"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <img src={npmIcon} alt="NPM" className="h-6 w-6" />
+          </a>
           <a
             href="https://github.com/ChatGavin/emojito"
             target="_blank"
