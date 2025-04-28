@@ -3,8 +3,14 @@
  * A utility library for working with emojis
  */
 
-// 导出所有工具函数
-export const version = "0.0.1";
+import { createEmoji, validateEmoji } from "./emoji";
+import pkg from "../package.json";
+
+// 导出版本号
+export const version = pkg.version;
+
+// 导出 emoji 相关功能
+export { createEmoji, validateEmoji };
 
 // 示例函数：检查字符串是否包含 emoji
 export function hasEmoji(str) {
