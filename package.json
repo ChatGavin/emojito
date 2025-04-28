@@ -25,7 +25,7 @@
     "version": "changeset version && rm -rf .changeset/*.md",
     "release": "turbo run build --filter=@emojito/core --filter=@emojito/web && changeset publish --filter=@emojito/core",
     "bump": "pnpm changeset && pnpm version",
-    "bump:auto": "pnpm version patch && pnpm -r exec -- npm version $(node -p \"require('../../package.json').version\") --allow-same-version --no-git-tag-version"
+    "bump:auto": "pnpm version patch && cd apps/web && npm version $(node -p \"require('../../package.json').version\") --allow-same-version --no-git-tag-version && cd ../../packages/core && npm version $(node -p \"require('../../package.json').version\") --allow-same-version --no-git-tag-version && cd ../.."
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",
