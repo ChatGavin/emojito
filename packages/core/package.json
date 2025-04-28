@@ -15,8 +15,8 @@
     "dist"
   ],
   "publishConfig": {
-    "name": "emojito",
-    "access": "public"
+    "access": "public",
+    "name": "emojito"
   },
   "keywords": [
     "emoji",
