@@ -38,33 +38,28 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          CURRENT_VERSION=$(node -p 'require("./package.json").version')
-          TAG="$CURRENT_VERSION"
-          if git rev-parse "$TAG" >/dev/null 2>&1; then
-            # 如果 tag 存在，增加 patch 版本号
-            NEW_VERSION=$(node -p "require('semver').inc('$CURRENT_VERSION', 'patch')")
-            echo "VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
-            echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
-          else
-            echo "VERSION=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-            echo "NEW_VERSION=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-          fi
+          # 获取最新的 tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          # 去掉可能的 v 前缀
+          LATEST_VERSION=${LATEST_TAG#v}
+          # 增加 patch 版本号
+          NEW_VERSION=$(node -p "require('semver').inc('$LATEST_VERSION', 'patch')")
+          echo "VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
 
       - name: Update version
         run: |
-          if [ "${{ steps.get_version.outputs.VERSION }}" != "${{ steps.get_version.outputs.NEW_VERSION }}" ]; then
-            # 更新所有包的版本号
-            pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
-            cd apps/web && pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
-            cd ../../packages/core && pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
-            cd ../..
-            # 提交版本更新
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add .
-            git commit -m "chore: bump version to ${{ steps.get_version.outputs.NEW_VERSION }}"
-            git push
-          fi
+          # 更新所有包的版本号
+          pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
+          cd apps/web && pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
+          cd ../../packages/core && pnpm version ${{ steps.get_version.outputs.NEW_VERSION }} --no-git-tag-version
+          cd ../..
+          # 提交版本更新
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore: bump version to ${{ steps.get_version.outputs.NEW_VERSION }}"
+          git push
 
       - name: Create tag
         run: |
