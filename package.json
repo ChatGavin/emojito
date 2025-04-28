@@ -20,9 +20,15 @@
     "preinstall": "npx only-allow pnpm",
     "web:dev": "turbo run dev --filter=@emojito/web",
     "web:build": "turbo run build --filter=@emojito/web",
-    "core:build": "turbo run build --filter=@emojito/core"
+    "core:build": "turbo run build --filter=@emojito/core",
+    "changeset": "changeset",
+    "version": "changeset version && rm -rf .changeset/*.md",
+    "release": "turbo run build --filter=@emojito/core --filter=@emojito/web && changeset publish --filter=@emojito/core",
+    "bump": "pnpm changeset && pnpm version",
+    "bump:auto": "changeset add --empty && pnpm version"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.2",
     "turbo": "^2.4.4"
   },
   "engines": {
