@@ -84,8 +84,11 @@ jobs:
 
       - name: Publish to GitHub Package
         run: |
+          cd packages/core
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
-          echo "@emojito:registry=https://npm.pkg.github.com" >> .npmrc
-          pnpm publish --filter=@emojito/core --no-git-checks
+          echo "@chatgavin:registry=https://npm.pkg.github.com" >> .npmrc
+          npm pkg set name="@chatgavin/emojito"
+          npm pkg set repository="https://github.com/ChatGavin/emojito.git"
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
