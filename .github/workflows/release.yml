@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install
-          pnpm add -D semver
+          pnpm add -Dw semver
 
       - name: Build
         run: pnpm core:build
