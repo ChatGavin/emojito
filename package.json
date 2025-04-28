@@ -1,6 +1,6 @@
 {
   "name": "emojito",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React Emoji 组件库，支持 Emoji 和 Unicode 码点，提供在线预览和搜索功能。",
   "author": "Gavin Lin",
   "license": "MIT",
