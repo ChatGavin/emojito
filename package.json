@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "turbo run dev --filter=@emojito/web...",
     "web:dev": "turbo run dev --filter=@emojito/web",
-    "web:build": "turbo run build --filter=@emojito/web"
+    "web:build": "turbo run build --filter=@emojito/web",
+    "core:build": "turbo run build --filter=@emojito/core"
   },
   "devDependencies": {
     "turbo": "^2.4.4"
