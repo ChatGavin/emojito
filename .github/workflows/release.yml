@@ -28,7 +28,9 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          pnpm install
+          pnpm add -D semver
 
       - name: Build
         run: pnpm core:build
