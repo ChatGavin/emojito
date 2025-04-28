@@ -11,9 +11,6 @@ importers:
       '@changesets/cli':
         specifier: ^2.29.2
         version: 2.29.2
-      semver:
-        specifier: ^7.7.1
-        version: 7.7.1
       turbo:
         specifier: ^2.4.4
         version: 2.5.2
@@ -50,6 +47,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      emojito:
+        specifier: ^1.0.3
+        version: 1.0.3(react@18.3.1)
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
@@ -1417,6 +1417,11 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  emojito@1.0.3:
+    resolution: {integrity: sha512-qLcdbwG2uwHQI/e9ux5/DuOTVBMDQhIZIo0n3XjlAgZucEGw6mZfpQPlEEvrCUA2K3ZDR5t68lUrGRGvMPVEYw==}
+    peerDependencies:
+      react: '>=16.8.0'
 
   enquirer@2.4.1:
     resolution: {integrity: sha512-rRqJg/6gd538VHvR3PSrdRBb/1Vy2YfzHqzvbhGIQpDRKIa4FgV/54b5Q1xYSxOOwKvjXweS26E0Q+nAMwp2pQ==}
@@ -4149,6 +4154,10 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
+
+  emojito@1.0.3(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   enquirer@2.4.1:
     dependencies:

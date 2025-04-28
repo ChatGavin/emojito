@@ -1,6 +1,6 @@
 {
   "name": "emojito",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "一款轻量级的 emoji 工具包",
   "author": "Gavin Lin",
   "license": "MIT",
@@ -21,15 +21,10 @@
     "web:dev": "turbo run dev --filter=@emojito/web",
     "web:build": "turbo run build --filter=@emojito/web",
     "core:build": "turbo run build --filter=@emojito/core",
-    "changeset": "changeset",
-    "version": "changeset version && rm -rf .changeset/*.md",
-    "release": "turbo run build --filter=@emojito/core --filter=@emojito/web && changeset publish --filter=@emojito/core",
-    "bump": "pnpm changeset && pnpm version",
     "bump:auto": "bash ./scripts/bump-version.sh"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",
-    "semver": "^7.7.1",
     "turbo": "^2.4.4"
   },
   "engines": {
