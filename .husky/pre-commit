@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 获取当前分支
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
+
+# 如果是 master 分支
+if [ "$CURRENT_BRANCH" = "master" ]; then
+  # 配置 pull 策略为 rebase
+  git config pull.rebase true
+  
+  # 同步远程分支
+  git pull --tags origin master
+  
+  # 获取最新的远程 tag
+  LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+  LATEST_VERSION=${LATEST_TAG#v}
+  
+  # 获取当前 package.json 中的版本号
+  CURRENT_VERSION=$(node -p "require('./package.json').version")
+  
+  # 比较版本号
+  if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+    echo "🔄 自动更新版本号..."
+    # 执行版本更新
+    pnpm bump:auto
+    # 添加版本更新到当前提交
+    git add .
+    echo "✅ 版本号已更新"
+  fi
+fi 
