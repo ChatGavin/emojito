@@ -1,6 +1,6 @@
 {
   "name": "emojito",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "一款轻量级的 emoji 工具包",
   "author": "Gavin Lin",
   "license": "MIT",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",
+    "semver": "^7.7.1",
     "turbo": "^2.4.4"
   },
   "engines": {
