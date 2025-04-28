@@ -14,18 +14,25 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "name": "emojito",
+    "access": "public"
+  },
   "keywords": [
     "emoji",
-    "emojito"
+    "emojito",
+    "react"
   ],
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "clean": "rimraf dist",
-    "test": "vitest",
-    "lint": "eslint src --ext .js"
+    "build": "rollup -c"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.0.0",

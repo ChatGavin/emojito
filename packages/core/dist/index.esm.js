@@ -1,8 +1,9 @@
+import React from 'react';
+
 /**
  * Emoji 组件
  */
 
-import React from "react";
 
 // 验证 emoji 编码
 function validateEmoji(code) {
@@ -32,41 +33,31 @@ function clampSize(size) {
 }
 
 // Emoji 组件
-export function Emoji({ code, size = 24 }) {
+function Emoji({
+  code,
+  size = 24
+}) {
   if (!validateEmoji(code)) {
     return null;
   }
-
   const emoji = unicodeToEmoji(code);
   const clampedSize = clampSize(size);
-
-  return React.createElement(
-    "span",
-    {
-      style: {
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: `${clampedSize}px`,
-        height: `${clampedSize}px`,
-        fontSize: `${clampedSize * 0.8}px`,
-        lineHeight: 1,
-        padding: "4px",
-        margin: 0,
-        boxSizing: "border-box",
-        backgroundColor: "#f6f6f7",
-        borderRadius: "6px",
-      },
-    },
-    emoji
-  );
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: `${clampedSize}px`,
+      height: `${clampedSize}px`,
+      fontSize: `${clampedSize * 0.8}px`,
+      lineHeight: 1,
+      padding: "4px",
+      margin: 0,
+      boxSizing: "border-box",
+      backgroundColor: "#f6f6f7",
+      borderRadius: "6px"
+    }
+  }, emoji);
 }
 
-// 获取 emoji 样式
-export function getEmojiStyle(size = 24) {
-  return {
-    fontSize: `${size}px`,
-    lineHeight: 1,
-    display: "inline-block",
-  };
-}
+export { Emoji };

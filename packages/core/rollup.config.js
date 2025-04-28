@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
+import babel from "@rollup/plugin-babel";
 
 export default {
   input: "src/index.js",
@@ -8,13 +9,20 @@ export default {
     {
       file: "dist/index.cjs.js",
       format: "cjs",
-      sourcemap: true,
     },
     {
       file: "dist/index.esm.js",
       format: "esm",
-      sourcemap: true,
     },
   ],
-  plugins: [resolve(), commonjs(), json()],
+  plugins: [
+    resolve(),
+    commonjs(),
+    json(),
+    babel({
+      babelHelpers: "bundled",
+      presets: ["@babel/preset-react"],
+    }),
+  ],
+  external: ["react"],
 };
