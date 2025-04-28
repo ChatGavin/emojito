@@ -1,8 +1,20 @@
 {
   "name": "@emojito/web",
-  "private": true,
   "version": "1.0.0",
+  "description": "一款轻量级的 emoji 工具包",
+  "author": "Gavin Lin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChatGavin/emojito.git"
+  },
+  "homepage": "https://emojito.gavin.chat",
+  "private": true,
   "type": "module",
+  "keywords": [
+    "emoji",
+    "emojito"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
