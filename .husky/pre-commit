@@ -6,12 +6,6 @@ CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
 
 # 如果是 master 分支
 if [ "$CURRENT_BRANCH" = "master" ]; then
-  # 配置 pull 策略为 rebase
-  git config pull.rebase true
-  
-  # 同步远程分支
-  git pull --tags origin master
-  
   # 获取最新的远程 tag
   LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
   LATEST_VERSION=${LATEST_TAG#v}
