@@ -4,14 +4,13 @@
 
 ## 功能特性
 
-- 支持 React 组件
-- 支持自定义样式
-- 支持搜索和过滤
-- 支持拖拽和复制
+- 🎯 React 表情组件, 兼容表情符号和 Unicode 码点
+- 🎨 网站提供在线预览和表情搜索, 点击即可复制
 
 ## 安装
 
 ```bash
+# 从 npm 安装
 npm install emojito
 ```
 
@@ -21,7 +20,7 @@ npm install emojito
 import Emojito from "emojito";
 
 function App() {
-  return <Emojito />;
+  return <Emojito code="1f600" size={48} />;
 }
 ```
 
@@ -36,4 +35,15 @@ pnpm web:dev
 
 # 构建
 pnpm web:build
+pnpm core:build
+```
+
+## 本地调试
+
+```jsx
+import Emojito from "@emojito/core";
+
+function App() {
+  return <Emojito code="1f600" size={48} />;
+}
 ```
