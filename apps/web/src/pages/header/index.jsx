@@ -2,6 +2,7 @@ import mojitoIcon from "@/assets/icons/mojito.svg";
 import githubIcon from "@/assets/icons/github.svg";
 import linkIcon from "@/assets/icons/link.svg";
 import npmIcon from "@/assets/icons/npm.svg";
+import { Preview } from "@/pages/preview";
 import {
   HoverCard,
   HoverCardContent,
@@ -42,7 +43,9 @@ export function Header() {
                 <X className="h-4 w-4" />
                 <span className="sr-only">关闭</span>
               </DialogClose>
-              <div className="p-4">{/* 对话框内容 */}</div>
+              <div className="p-4">
+                <Preview />
+              </div>
             </DialogContent>
           </Dialog>
           <a
