@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Emoji 组件
+ * Emojito 组件
  */
 
 
@@ -32,8 +32,8 @@ function clampSize(size) {
   return Math.min(Math.max(size, 12), 48);
 }
 
-// Emoji 组件
-function Emoji({
+// Emojito 组件
+function Emojito({
   code,
   size = 24
 }) {
@@ -60,4 +60,9 @@ function Emoji({
   }, emoji);
 }
 
-export { Emoji };
+/**
+ * Emojito
+ * A React component for displaying emojis
+ */
+
+export { Emojito as default };

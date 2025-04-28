@@ -1,9 +1,9 @@
 /**
- * Emojito Core
+ * Emojito
  * A React component for displaying emojis
  */
 
-import { Emoji } from "./emoji";
+import Emojito from "./emoji";
 
-// 导出 Emoji 组件
-export { Emoji };
+// 导出 Emojito 组件
+export default Emojito;
