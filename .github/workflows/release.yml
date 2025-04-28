@@ -45,7 +45,9 @@ jobs:
           git push origin "v${{ steps.get_version.outputs.VERSION }}"
 
       - name: Publish to npm
-        run: pnpm release
+        run: |
+          cd packages/core
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
