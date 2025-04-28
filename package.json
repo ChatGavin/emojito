@@ -1,6 +1,6 @@
 {
   "name": "emojito",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一款轻量级的 emoji 工具包",
   "author": "Gavin Lin",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "version": "changeset version && rm -rf .changeset/*.md",
     "release": "turbo run build --filter=@emojito/core --filter=@emojito/web && changeset publish --filter=@emojito/core",
     "bump": "pnpm changeset && pnpm version",
-    "bump:auto": "changeset add --empty --snapshot && changeset version --snapshot && rm -rf .changeset/*.md"
+    "bump:auto": "pnpm version patch && pnpm -r version $(node -p \"require('./package.json').version\")"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",
