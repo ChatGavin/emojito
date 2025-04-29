@@ -60,11 +60,11 @@ git config --local user.name "GitHub Action"
 git add .
 git commit -m "chore: bump version to $NEW_VERSION"
 
-# 创建 tag
-git tag -a "v$NEW_VERSION" -m "Release v$NEW_VERSION"
+# 创建 tag（不带 v 前缀）
+git tag -a "$NEW_VERSION" -m "Release $NEW_VERSION"
 
 # 推送更改和 tag
 git push origin master
-git push origin "v$NEW_VERSION"
+git push origin "$NEW_VERSION"
 
 echo "✨ 版本已更新到 $NEW_VERSION 并创建了 tag" 
