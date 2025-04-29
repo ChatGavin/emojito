@@ -10,15 +10,29 @@ if [ "$CURRENT_BRANCH" = "master" ]; then
   LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
   LATEST_VERSION=${LATEST_TAG#v}
   
-  # 获取当前 package.json 中的版本号
-  CURRENT_VERSION=$(node -p "require('./package.json').version")
-  
-  # 比较版本号
-  if [ "$(node -p "require('semver').gt('$CURRENT_VERSION', '$LATEST_VERSION')")" = "true" ]; then
-    echo "✅ 当前版本号 $CURRENT_VERSION 大于线上版本 $LATEST_VERSION，允许提交"
-  else
-    echo "❌ 错误：当前版本号 $CURRENT_VERSION 小于等于线上版本 $LATEST_VERSION"
+  # 检查根目录版本号
+  ROOT_VERSION=$(node -p "require('./package.json').version")
+  if [ "$(node -p "require('semver').gt('$ROOT_VERSION', '$LATEST_VERSION')")" != "true" ]; then
+    echo "❌ 错误：根目录版本号 $ROOT_VERSION 小于等于线上版本 $LATEST_VERSION"
     echo "请先运行 ./scripts/bump-version.sh 更新版本号"
     exit 1
   fi
+
+  # 检查 web 应用版本号
+  WEB_VERSION=$(node -p "require('./apps/web/package.json').version")
+  if [ "$WEB_VERSION" != "$ROOT_VERSION" ]; then
+    echo "❌ 错误：web 应用版本号 $WEB_VERSION 与根目录版本号 $ROOT_VERSION 不一致"
+    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    exit 1
+  fi
+
+  # 检查 core 包版本号
+  CORE_VERSION=$(node -p "require('./packages/core/package.json').version")
+  if [ "$CORE_VERSION" != "$ROOT_VERSION" ]; then
+    echo "❌ 错误：core 包版本号 $CORE_VERSION 与根目录版本号 $ROOT_VERSION 不一致"
+    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    exit 1
+  fi
+
+  echo "✅ 所有项目版本号检查通过：$ROOT_VERSION"
 fi 
