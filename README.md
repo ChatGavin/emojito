@@ -47,4 +47,3 @@ function App() {
   return <Emojito code="1f600" size={48} />;
 }
 ```
-# test
