@@ -25,14 +25,26 @@ else
   echo "使用线上版本 $LATEST_VERSION 并增加 patch 到 $NEW_VERSION"
 fi
 
+# 如果是在 GitHub Actions 中运行，输出新版本号
+if [ ! -z "$GITHUB_OUTPUT" ]; then
+  echo "VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+  echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+fi
+
 # 更新根目录版本号
-cd "$ROOT_DIR" && pnpm version $NEW_VERSION --no-git-tag-version
+if [ "$CURRENT_VERSION" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR" && pnpm version $NEW_VERSION --no-git-tag-version
+fi
 
 # 更新 web 应用版本号
-cd "$ROOT_DIR/apps/web" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+if [ "$(node -p "require('./apps/web/package.json').version")" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR/apps/web" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+fi
 
 # 更新 core 包版本号
-cd "$ROOT_DIR/packages/core" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+if [ "$(node -p "require('./packages/core/package.json').version")" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR/packages/core" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+fi
 
 # 提交版本更新
 git config --local user.email "action@github.com"
