@@ -6,6 +6,7 @@ CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
 # 如果是 master 分支
 if [ "$CURRENT_BRANCH" = "master" ]; then
   # 获取最新的远程 tag
+  git fetch --tags
   LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
   LATEST_VERSION=${LATEST_TAG#v}
   
@@ -13,12 +14,11 @@ if [ "$CURRENT_BRANCH" = "master" ]; then
   CURRENT_VERSION=$(node -p "require('./package.json').version")
   
   # 比较版本号
-  if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
-    echo "🔄 自动更新版本号..."
-    # 执行版本更新
-    pnpm bump:auto
-    # 添加版本更新到当前提交
-    git add .
-    echo "✅ 版本号已更新"
+  if [ "$(node -p "require('semver').gt('$CURRENT_VERSION', '$LATEST_VERSION')")" = "true" ]; then
+    echo "✅ 当前版本号 $CURRENT_VERSION 大于线上版本 $LATEST_VERSION，允许提交"
+  else
+    echo "❌ 错误：当前版本号 $CURRENT_VERSION 小于等于线上版本 $LATEST_VERSION"
+    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    exit 1
   fi
 fi 
