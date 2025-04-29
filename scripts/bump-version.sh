@@ -36,14 +36,23 @@ if [ ! -z "$GITHUB_OUTPUT" ]; then
   echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
 fi
 
-# 更新根目录版本号
-cd "$ROOT_DIR" && pnpm version $NEW_VERSION --no-git-tag-version
+# 检查根目录版本号
+ROOT_VERSION=$(node -p "require('./package.json').version")
+if [ "$ROOT_VERSION" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR" && pnpm version $NEW_VERSION --no-git-tag-version
+fi
 
-# 更新 web 应用版本号
-cd "$ROOT_DIR/apps/web" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+# 检查 web 应用版本号
+WEB_VERSION=$(node -p "require('./apps/web/package.json').version")
+if [ "$WEB_VERSION" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR/apps/web" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+fi
 
-# 更新 core 包版本号
-cd "$ROOT_DIR/packages/core" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+# 检查 core 包版本号
+CORE_VERSION=$(node -p "require('./packages/core/package.json').version")
+if [ "$CORE_VERSION" != "$NEW_VERSION" ]; then
+  cd "$ROOT_DIR/packages/core" && pnpm version $NEW_VERSION --no-git-tag-version && cd ../..
+fi
 
 # 提交版本更新
 git config --local user.email "action@github.com"
