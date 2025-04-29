@@ -5,6 +5,8 @@ CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
 
 # 如果是 master 分支
 if [ "$CURRENT_BRANCH" = "master" ]; then
+  echo "\n🔍 正在检查项目版本号..."
+  
   # 获取最新的远程 tag
   git fetch --tags
   LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
@@ -13,26 +15,45 @@ if [ "$CURRENT_BRANCH" = "master" ]; then
   # 检查根目录版本号
   ROOT_VERSION=$(node -p "require('./package.json').version")
   if [ "$(node -p "require('semver').gt('$ROOT_VERSION', '$LATEST_VERSION')")" != "true" ]; then
-    echo "❌ 错误：根目录版本号 $ROOT_VERSION 小于等于线上版本 $LATEST_VERSION"
-    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    echo "\n❌ 版本号检查失败"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "• 根目录版本号: $ROOT_VERSION"
+    echo "• 线上最新版本: $LATEST_VERSION"
+    echo "• 原因: 新版本号必须大于线上版本"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "💡 解决方案: 请运行 pnpm version:update\n"
     exit 1
   fi
 
   # 检查 web 应用版本号
   WEB_VERSION=$(node -p "require('./apps/web/package.json').version")
   if [ "$WEB_VERSION" != "$ROOT_VERSION" ]; then
-    echo "❌ 错误：web 应用版本号 $WEB_VERSION 与根目录版本号 $ROOT_VERSION 不一致"
-    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    echo "\n❌ 版本号检查失败"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "• web 应用版本: $WEB_VERSION"
+    echo "• 根目录版本号: $ROOT_VERSION"
+    echo "• 原因: web 应用版本与根目录版本不一致"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "💡 解决方案: 请运行 pnpm version:update\n"
     exit 1
   fi
 
   # 检查 core 包版本号
   CORE_VERSION=$(node -p "require('./packages/core/package.json').version")
   if [ "$CORE_VERSION" != "$ROOT_VERSION" ]; then
-    echo "❌ 错误：core 包版本号 $CORE_VERSION 与根目录版本号 $ROOT_VERSION 不一致"
-    echo "请先运行 ./scripts/bump-version.sh 更新版本号"
+    echo "\n❌ 版本号检查失败"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "• core 包版本号: $CORE_VERSION"
+    echo "• 根目录版本号: $ROOT_VERSION"
+    echo "• 原因: core 包版本与根目录版本不一致"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "💡 解决方案: 请运行 pnpm version:update\n"
     exit 1
   fi
 
-  echo "✅ 所有项目版本号检查通过：$ROOT_VERSION"
+  echo "\n✅ 版本号检查通过"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "• 当前版本: $ROOT_VERSION"
+  echo "• 所有包版本一致性检查: 通过"
+  echo "• 版本号大于线上版本检查: 通过\n"
 fi 

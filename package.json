@@ -1,6 +1,6 @@
 {
   "name": "emojito",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React Emoji 组件库，支持 Emoji 和 Unicode 码点，提供在线预览和搜索功能。",
   "author": "Gavin Lin",
   "license": "MIT",
@@ -22,7 +22,8 @@
     "web:dev": "turbo run dev --filter=@emojito/web",
     "web:build": "turbo run build --filter=@emojito/web",
     "core:build": "turbo run build --filter=@emojito/core",
-    "bump:auto": "bash ./scripts/bump-version.sh"
+    "bump:auto": "bash ./scripts/bump-version.sh",
+    "version:update": "./scripts/update-version.sh"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.2",
