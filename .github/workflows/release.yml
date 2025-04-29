@@ -35,6 +35,11 @@ jobs:
       - name: Build
         run: pnpm core:build
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
       - name: Create tag
         run: |
           # 获取当前 package.json 中的版本号
