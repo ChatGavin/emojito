@@ -2,7 +2,7 @@
 
 React Emoji 组件库，支持 Emoji 和 Unicode 码点，提供在线预览和搜索功能。
 
-## 功能特性
+## 特性
 
 - 🎯 React Emoji 组件, 兼容 Emoji 和 Unicode 码点
 - 🎨 网站提供在线预览和 Emoji 搜索, 点击即可复制
@@ -38,7 +38,7 @@ pnpm web:build
 pnpm core:build
 ```
 
-## 本地调试
+## 调试
 
 ```jsx
 import Emojito from "@emojito/core";
